@@ -30,7 +30,7 @@ export default function register() {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${ process.env.PUBLIC_URL }/service-worker.js`;
 
       if (!isLocalhost) {
         // Is not local host. Just register service worker
@@ -67,9 +67,7 @@ function registerValidSW(swUrl) {
         };
       };
     })
-    .catch(error => {
-      console.error('Error during service worker registration:', error);
-    });
+    .catch(error => console.error('Error during service worker registration:', error));
 }
 
 function checkValidServiceWorker(swUrl) {
@@ -92,17 +90,9 @@ function checkValidServiceWorker(swUrl) {
         registerValidSW(swUrl);
       }
     })
-    .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
-    });
+    .catch(() => console.log('No internet connection found. App is running in offline mode.'));
 }
 
 export function unregister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
-  }
+  if ('serviceWorker' in navigator) navigator.serviceWorker.ready.then(registration => registration.unregister());
 }
